@@ -1,29 +1,51 @@
-  var express = require("express");
-  var bodyParser = require('body-parser');
-  var methodOverride = require('method-override');
-  var models = require("./models");
-  var path = require('path');
+var express = require('express'),
+    app = express(),
+    setupHandlebars  = require('./app/setupHandlebars.js')(app),
+    setupPassport = require('./app/setupPassport'),
+    flash = require('connect-flash'),
+    appRouter = require('./app/routers/appRouter.js')(express),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    jsonParser = bodyParser.json();
 
-  var PORT = process.env.PORT || 7000;
+var port = process.env.PORT || 8080;
 
-  var project_controller = require('./controllers/project_controller');
-  var datapage_controller = require('./controllers/datapage_controller');
-  var forms_controller = require('./controllers/forms_controller');
+app.use(cookieParser());
+app.use(session({ secret: '4564f6s4fdsfdfd', resave: false, saveUninitialized: false }));
 
-  var app = express();
+app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.errorMessage = req.flash('error');
+    next();
+});
 
-  app.use(express.static(__dirname + '/public'));
-  app.set("view engine", "ejs");
+app.use(jsonParser);
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
+setupPassport(app);
 
-  app.use(methodOverride('_method'));
+app.use('/', appRouter);
 
-  var sequelizeConnection = models.sequelize;
+var project_controller = require('./controllers/project_controller');
+var datapage_controller = require('./controllers/datapage_controller');
+var forms_controller = require('./controllers/forms_controller');
 
-  sequelizeConnection.query('SET FOREIGN_KEY_CHECKS = 0')
+app.use(express.static(__dirname + '/public'));
+
+// app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(methodOverride('_method'));
+
+var sequelizeConnection = models.sequelize;
+
+sequelizeConnection.query('SET FOREIGN_KEY_CHECKS = 0')
 
 //syncing tabels
  .then(function(){
