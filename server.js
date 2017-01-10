@@ -1,63 +1,80 @@
-var express = require('express'),
-    app = express(),
-    setupHandlebars  = require('./app/setupHandlebars.js')(app),
-    setupPassport = require('./app/setupPassport'),
-    flash = require('connect-flash'),
-    appRouter = require('./app/routers/appRouter.js')(express),
-    session = require('express-session'),
-    bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    jsonParser = bodyParser.json();
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var exphbs = require('express-handlebars');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
-var port = process.env.PORT || 8080;
+// Initilize App
+var app = express();
 
+// View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('view engine', 'handlebars');
+
+// BodyParser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: '4564f6s4fdsfdfd', resave: false, saveUninitialized: false }));
 
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
 app.use(flash());
-app.use(function(req, res, next) {
-    res.locals.errorMessage = req.flash('error');
-    next();
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
 });
 
-app.use(jsonParser);
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+//Route files
+var routes = require('./routes/routes');
+var user = require('./routes/user');
+app.use('/', routes);
+app.use('/user', user);
 
-setupPassport(app);
+// Set Port
+app.set('port', (process.env.PORT || 3000));
 
-app.use('/', appRouter);
-
-var project_controller = require('./controllers/project_controller');
-var datapage_controller = require('./controllers/datapage_controller');
-var forms_controller = require('./controllers/forms_controller');
-
-app.use(express.static(__dirname + '/public'));
-
-// app.set("view engine", "ejs");
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(methodOverride('_method'));
-
-var sequelizeConnection = models.sequelize;
-
-sequelizeConnection.query('SET FOREIGN_KEY_CHECKS = 0')
-
-//syncing tabels
- .then(function(){
-
-    return sequelizeConnection.sync({force:false})
-
-  })
-
-  app.use('/', project_controller);
-  app.use('/state', datapage_controller);
-  app.use('/userform', forms_controller);
-
-  app.listen(PORT, function(){
-    console.log('App listening on PORT ' + PORT);
-  });
+app.listen(app.get('port'), function(){
+  console.log('Server started on port '+app.get('port'));
+});
