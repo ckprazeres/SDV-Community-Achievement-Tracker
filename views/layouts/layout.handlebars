@@ -31,7 +31,7 @@
 				              <a href="/bundles/dashboard">Bundles Tracker</a>
 				            {{else}}
 				              <a href="/user/login">Login</a>
-				              <a href="/user/register">Register</a>
+				              <a href="/user/signup">Register</a>
 				            {{/if}}
 			            </div>
 					</div>
@@ -44,6 +44,18 @@
 			</header>
 
 			<main>
+				{{#if success_msg}}
+					<div class="alert alert-success">{{success_msg}}</div>
+				{{/if}}
+
+				{{#if error_msg}}
+					<div class="alert alert-danger">{{error_msg}}</div>
+				{{/if}}
+
+				{{#if error}}
+					<div class="alert alert-danger">{{error}}</div>
+				{{/if}}
+          
 				{{#if isBundlePage}}
 					Hello<br><br>
 				{{/if}}

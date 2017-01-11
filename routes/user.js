@@ -2,20 +2,64 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var bcrypt = require('bcryptjs');
 var models = require('../models');
 
 // --------------------------------------------------------------------
 // Functions
 // --------------------------------------------------------------------
-
-function createUser(newUser, callback) {
+function hashPassword(newUser, callback) {
 	bcrypt.genSalt(10, function(err, salt) {
 	    bcrypt.hash(newUser.password, salt, function(err, hash) {
 	        newUser.password = hash;
-	        newUser.save(callback);
+	        callback();
 	    });
 	});
+}
+
+function createUser(newUser, callback) {
+	//Variables for sequelize
+    var newChara;
+    var newFarmer;
+
+    //Create new user, farmer, and bundles in database
+    return models.User.create({
+        username: newUser.username,
+        email: newUser.email,
+        password: newUser.password
+    })
+    .then(function(chara) {
+      newChara = chara;
+    })
+    .then(function() {
+      return models.Farmer.create(
+        {
+          name: newUser.farmer,
+          Boilerroom: {},
+          Bulletinboard: {},
+          Craftsroom: {},
+          Fishtank: {},
+          Pantry: {},
+          Vault: {}
+        },
+        {
+          include:
+            [
+              models.Boilerroom,
+              models.Bulletinboard,
+              models.Craftsroom,
+              models.Fishtank,
+              models.Pantry,
+              models.Vault
+            ]
+        }
+      )
+    })
+    .then(function(farmer) {
+      newFarmer = farmer;
+      return newChara.addFarmer(newFarmer);
+    })
+    .then(callback);
 }
 
 function getUserByUsername(username, callback) {
@@ -66,7 +110,7 @@ router.get('/logout', function(req, res) {
 		res.redirect('/user/login');
 	} else {
 		req.flash('error_msg', 'You are not logged in.');
-		res.redirect('/user/login'));
+		res.redirect('/user/login');
 	}
 });
 
@@ -76,7 +120,7 @@ router.get('/farmers', function(req, res) {
 		res.render('farmers', { title: 'Farmers' });
 	} else {
 		req.flash('error_msg', 'You are not logged in.');
-		res.redirect('/user/login'));
+		res.redirect('/user/login');
 	}
 });
 
@@ -86,7 +130,7 @@ router.get('/account', function(req, res) {
 		res.render('account', { title: 'Account Settings' });
 	} else {
 		req.flash('error_msg', 'You are not logged in.');
-		res.redirect('/user/login'));
+		res.redirect('/user/login');
 	}
 });
 
@@ -98,31 +142,35 @@ router.get('/account', function(req, res) {
 router.post('/signup', function(req, res) {
 	var email = req.body.email;
 	var username = req.body.username;
+	var farmer = req.body.farmer;
 	var password = req.body.password;
 	var password2 = req.body.password2;
 
 	// Validation
-	req.checkBody('email', 'Email is required').notEmpty();
-	req.checkBody('email', 'Email is not valid').isEmail();
-	req.checkBody('username', 'Username is required').notEmpty();
-	req.checkBody('password', 'Password is required').notEmpty();
-	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+	req.checkBody('email', 'Email is required.').notEmpty();
+	req.checkBody('email', 'Email is not valid.').isEmail();
+	req.checkBody('farmer', 'Farmer\'s name is required').notEmpty();
+	req.checkBody('username', 'Username is required.').notEmpty();
+	req.checkBody('password', 'Password is required.').notEmpty();
+	req.checkBody('password2', 'Passwords do not match.').equals(req.body.password);
 
 	var errors = req.validationErrors();
 
 	if(errors) {
 		res.render('signup', { errors: errors });
 	} else {
-		var newUser = new User({
-			name: name,
-			email: email,
+		var newUser = {
 			username: username,
+			email: email,
+			farmer: farmer,
 			password: password
-		});
+		};
 
-		models.User.createUser(newUser, function(err, user) {
+		hashPassword(newUser, function(err, user) {
 			if(err) throw err;
-			console.log(user);
+			createUser(newUser, function() {
+				console.log('New user created: ' + newUser.username);
+			});
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
