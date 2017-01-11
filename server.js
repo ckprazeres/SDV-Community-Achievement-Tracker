@@ -8,6 +8,7 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var models = require('./models')
 
 // Initilize App
 var app = express();
@@ -69,8 +70,23 @@ app.use(function (req, res, next) {
 //Route files
 var routes = require('./routes/routes');
 var user = require('./routes/user');
+var bundles = require('./routes/bundles');
+
+//Regular routes
 app.use('/', routes);
 app.use('/user', user);
+app.use('/bundles', bundles);
+
+//404 routes
+app.get('/user/*', function(req, res) {
+  res.redirect('/user/login');
+});
+app.get('/bundles/*', function(req, res) {
+  res.redirect('/bundles/dashboard');
+});
+app.get('/*', function(req, res) {
+  res.redirect('/');
+});
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));

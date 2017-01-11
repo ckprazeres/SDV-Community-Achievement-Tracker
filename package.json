@@ -13,6 +13,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "mysql": "^2.12.0",
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",

@@ -23,8 +23,7 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    password: DataTypes.STRING,
-    salt: DataTypes.STRING
+    password: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

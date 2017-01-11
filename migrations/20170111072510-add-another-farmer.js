@@ -12,20 +12,21 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
 
-    var newChara;
+    var userAerophin;
     var newFarmer;
 
-    return models.User.create({
-        username: 'aerophin', 
-        email: 'aerophin@gmail.com'
+    return models.User.findOne({
+      where: {
+        user_id: 1
+      }
     })
-    .then(function(chara) {
-      newChara = chara;
+    .then(function(user) {
+      userAerophin = user;
     })
     .then(function() {
       return models.Farmer.create(
         {
-          name: 'Cherri',
+          name: 'Aeropi',
           Boilerroom: {},
           Bulletinboard: {},
           Craftsroom: {},
@@ -48,7 +49,7 @@ module.exports = {
     })
     .then(function(farmer) {
       newFarmer = farmer;
-      return newChara.addFarmer(newFarmer);
+      return userAerophin.addFarmer(newFarmer);
     })
   },
 
@@ -61,10 +62,10 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
 
-    return models.User.destroy({
+    return models.Farmer.destroy({
       where: {
-        username: 'aerophin'
+        name: 'Aeropi'
       }
-    });
+    })
   }
 };

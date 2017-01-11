@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="/css/style.css" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Karla" rel="stylesheet">
 	<title>
-		{{!-- {{#if title}} --}}
+		{{#if title}}
 			{{title}} - 
-		{{!-- {{/if}} --}}
+		{{/if}}
 		Stardew Valley Community Achievement Tracker
 	</title>
 </head>
@@ -26,7 +26,9 @@
 					<div class="text-center nameplate">
 						<div class="nameplate-name">
 							{{#if user}}
-				              [[<a href="/user/farmer">farmer</a>]] | [[<a href="/user/settings">username</a>]] (<a href="/user/logout">logout</a>)
+				              [[<a href="/user/farmers">farmer</a>]] 
+				              [[<a href="/user/account">username</a>]] (<a href="/user/logout">logout</a>)
+				              <a href="/bundles/dashboard">Bundles Tracker</a>
 				            {{else}}
 				              <a href="/user/login">Login</a>
 				              <a href="/user/register">Register</a>
@@ -42,6 +44,10 @@
 			</header>
 
 			<main>
+				{{#if isBundlePage}}
+					Hello<br><br>
+				{{/if}}
+
 				{{{body}}}
 			</main>
 

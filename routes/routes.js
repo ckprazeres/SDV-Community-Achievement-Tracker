@@ -2,16 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 // Get Homepage
-router.get('/', function(req, res){
+router.get('/', ensureAuthenticated, function(req, res){
 	res.render('index', { title: 'Welcome' });
 });
 
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
-		return next();
+		res.redirect('/bundles/dashboard');
 	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/user/login');
+		return next();
 	}
 }
 

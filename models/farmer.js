@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         Farmer.hasOne(models.Craftsroom, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
         Farmer.hasOne(models.Fishtank, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
         Farmer.hasOne(models.Pantry, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
-        Farmer.hasOne(models.Vault), {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true};
+        Farmer.hasOne(models.Vault, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
       }
     }
   });
