@@ -23,7 +23,9 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    current_farmer_id: DataTypes.INTEGER,
+    current_farmer_name: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

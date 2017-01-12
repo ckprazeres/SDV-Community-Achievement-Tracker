@@ -29,24 +29,25 @@
 					<div class="text-center nameplate">
 						<div class="nameplate-name">
 							{{#if user}}
-				              <a href="/user/farmers">farmerName</a> | 
-				              <a href="/user/account">{{user.dataValues.username}}</a> (<a href="/user/logout">logout</a>)
-				              <a href="/bundles/dashboard">Bundles Tracker</a>
-				            {{else}}
-				              <a href="/user/login">Login</a>
-				              <a href="/user/signup">Register</a>
-				            {{/if}}
-			            </div>
+								<a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a> | 
+								<a href="/user/account">{{user.dataValues.username}}</a> (<a href="/user/logout">logout</a>)
+								<a href="/bundles/dashboard">Bundles Tracker</a>
+							{{else}}
+								<a href="/user/login">Login</a>
+								<a href="/user/signup">Register</a>
+							{{/if}}
+						</div>
 					</div>
-
-					<a href="#">Dashboard</a> 
-					<a href="#">Bundle Tracker</a> 
-					<a href="#">Settings</a> 
-					<a href="#">Logout</a> 
 				</nav>
 			</header>
 
 			<main>
+				{{#if header}}
+					<h2>{{header}}</h2>
+				{{else}}
+					<h2>{{title}}</h2>
+				{{/if}}
+
 				{{#if success_msg}}
 					<div class="alert alert-success">{{success_msg}}</div>
 				{{/if}}
@@ -60,7 +61,7 @@
 				{{/if}}
           
 				{{#if isBundlePage}}
-					Hello<br><br>
+					Bundle navigation<br><br>
 				{{/if}}
 
 				{{{body}}}

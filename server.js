@@ -67,14 +67,30 @@ app.use(function (req, res, next) {
   next();
 });
 
+  // //Grab name of user's current farmer to display in layout
+  //   if(req.user !== null && req.user.dataValues.farmerName == null) {
+  //     return models.Farmer.findOne({
+  //       where: {
+  //         user_id: req.user.dataValues.user_id,
+  //         farmer_id: req.user.dataValues.currentFarmer
+  //       }
+  //     })
+  //     .then(function(farmerInfo) {
+  //       req.user.dataValues.farmerName = farmerInfo.dataValues.name;
+  //       console.log('Farmer name: ' + req.user.dataValues.farmerName);
+  //     })
+  //   }
+
 //Route files
 var routes = require('./routes/routes');
 var user = require('./routes/user');
 var bundles = require('./routes/bundles');
+var farmers = require('./routes/farmers');
 
 //Regular routes
 app.use('/', routes);
 app.use('/user', user);
+app.use('/user/farmers', farmers);
 app.use('/bundles', bundles);
 
 //404 routes

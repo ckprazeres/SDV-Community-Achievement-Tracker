@@ -10,69 +10,63 @@ var models = require('../models');
 // --------------------------------------------------------------------
 function hashPassword(newUser, callback) {
 	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(newUser.password, salt, function(err, hash) {
-	        newUser.password = hash;
-	        callback();
-	    });
+			bcrypt.hash(newUser.password, salt, function(err, hash) {
+					newUser.password = hash;
+					callback();
+			});
 	});
 }
 
 function createUser(newUser, callback) {
 	//Variables for sequelize
-    var newChara;
-    var newFarmer;
+		var newChara;
+		var newFarmer;
 
-    //Create new user, farmer, and bundles in database
-    return models.User.create({
-        username: newUser.username,
-        email: newUser.email,
-        password: newUser.password
-    })
-    .then(function(chara) {
-      newChara = chara;
-    })
-    .then(function() {
-      return models.Farmer.create(
-        {
-          name: newUser.farmer,
-          Boilerroom: {},
-          Bulletinboard: {},
-          Craftsroom: {},
-          Fishtank: {},
-          Pantry: {},
-          Vault: {}
-        },
-        {
-          include:
-            [
-              models.Boilerroom,
-              models.Bulletinboard,
-              models.Craftsroom,
-              models.Fishtank,
-              models.Pantry,
-              models.Vault
-            ]
-        }
-      )
-    })
-    .then(function(farmer) {
-      newFarmer = farmer;
-      newChara.addFarmer(newFarmer);
-    })
-    .then(callback)
-   //  .catch(function(err) {
-			// if(err) { return console.log(err.errors[0].message) }
-   //  })
-    // .then(function(err_msg) {
-    // 	callback(err_msg);
-    // })
+		//Create new user, farmer, and bundles in database
+		return models.User.create({
+				username: newUser.username,
+				email: newUser.email,
+				password: newUser.password
+		})
+		.then(function(chara) {
+			newChara = chara;
+		})
+		.then(function() {
+			return models.Farmer.create(
+				{
+					name: newUser.farmer,
+					Boilerroom: {},
+					Bulletinboard: {},
+					Craftsroom: {},
+					Fishtank: {},
+					Pantry: {},
+					Vault: {}
+				},
+				{
+					include:
+						[
+							models.Boilerroom,
+							models.Bulletinboard,
+							models.Craftsroom,
+							models.Fishtank,
+							models.Pantry,
+							models.Vault
+						]
+				}
+			)
+		})
+		.then(function(farmer) {
+			newFarmer = farmer;
+			newChara.addFarmer(newFarmer);
+			newChara.update({current_farmer_id: newFarmer.farmer_id, current_farmer_name: newFarmer.name});
+		})
+		.then(callback);
 }
 
 function getUserByUsername(username, callback) {
 	var query = {username: username};
 	return models.User.findOne({where: query})
 	.then(function(user) {
-		console.log('Found user by username: ',user);
 		callback(null, user);
 	})
 }
@@ -80,8 +74,8 @@ function getUserByUsername(username, callback) {
 
 function comparePassword(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    	if(err) throw err;
-    	callback(null, isMatch);
+			if(err) throw err;
+			callback(null, isMatch);
 	});
 }
 
@@ -116,17 +110,6 @@ router.get('/logout', function(req, res) {
 		req.flash('success_msg', 'You are now logged out.');
 		res.redirect('/user/login');
 	} else {
-		req.flash('error_msg', 'You are not logged in.');
-		res.redirect('/user/login');
-	}
-});
-
-//Show user's farmers
-router.get('/farmers', function(req, res) {
-	if(req.isAuthenticated()) {
-		res.render('farmers', { title: 'Farmers' });
-	} else {
-		req.flash('error_msg', 'You are not logged in.');
 		res.redirect('/user/login');
 	}
 });
@@ -187,41 +170,39 @@ router.post('/signup', function(req, res) {
 });
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-  	getUserByUsername(username, function(err, user) {
-	   	if(err) throw err;
-	   	if(!user) {
-	   		return done(null, false, {message: 'The user account doesn\'t exist! Please sign up first.'});
-   	}
+	function(username, password, done) {
+		getUserByUsername(username, function(err, user) {
+			if(err) throw err;
+			if(!user) {
+				return done(null, false, {message: 'This user account doesn\'t exist! Please sign up first.'});
+		}
 
-   	comparePassword(password, user.dataValues.password, function(err, isMatch) {
-   		if(err) throw err;
-   		if(isMatch) {
-   			return done(null, user);
-   		} else {
-   			return done(null, false, {message: 'Wrong password! Try again.'});
-   		}
-   	});
-   });
-  })
+		comparePassword(password, user.dataValues.password, function(err, isMatch) {
+			if(err) throw err;
+			if(isMatch) {
+				return done(null, user);
+			} else {
+				return done(null, false, {message: 'Wrong password! Try again.'});
+			}
+		});
+	 });
+	})
 );
 
 passport.serializeUser(function(user, done) {
-  done(null, user.dataValues.user_id);
+	done(null, user.dataValues.user_id);
 });
 
 passport.deserializeUser(function(id, done) {
-  models.User.find({where: {user_id: id}}).then(function(user){
-    done(null, user);
-  }).error(function(err){
-    done(err, null);
-  });
+	models.User.find({where: {user_id: id}}).then(function(user){
+		done(null, user);
+	}).error(function(err){
+		done(err, null);
+	});
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/bundles/dashboard', failureRedirect:'/user/login', failureFlash: true}),
-  function(req, res) {
-    res.redirect('/bundles/dashboard');
-});
+	passport.authenticate('local', {successRedirect:'/bundles/dashboard', failureRedirect:'/user/login', failureFlash: true})
+);
 
 module.exports = router;
