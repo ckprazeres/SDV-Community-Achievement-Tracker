@@ -57,19 +57,26 @@ function createUser(newUser, callback) {
     })
     .then(function(farmer) {
       newFarmer = farmer;
-      return newChara.addFarmer(newFarmer);
+      newChara.addFarmer(newFarmer);
     })
-    .then(callback);
+    .then(callback)
+   //  .catch(function(err) {
+			// if(err) { return console.log(err.errors[0].message) }
+   //  })
+    // .then(function(err_msg) {
+    // 	callback(err_msg);
+    // })
 }
 
 function getUserByUsername(username, callback) {
 	var query = {username: username};
-	User.findOne(query, callback);
+	return models.User.findOne({where: query})
+	.then(function(user) {
+		console.log('Found user by username: ',user);
+		callback(null, user);
+	})
 }
 
-function getUserById(id, callback) {
-	User.findById(id, callback);
-}
 
 function comparePassword(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
@@ -168,49 +175,53 @@ router.post('/signup', function(req, res) {
 
 		hashPassword(newUser, function(err, user) {
 			if(err) throw err;
-			createUser(newUser, function() {
+			createUser(newUser, function(err) {
 				console.log('New user created: ' + newUser.username);
+
+				req.flash('success_msg', 'You are registered and can now login');
+				res.redirect('/user/login');
 			});
 		});
 
-		req.flash('success_msg', 'You are registered and can now login');
-		res.redirect('/user/login');
 	}
 });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-   User.getUserByUsername(username, function(err, user) {
-   	if(err) throw err;
-   	if(!user) {
-   		return done(null, false, {message: 'Unknown User'});
+  	getUserByUsername(username, function(err, user) {
+	   	if(err) throw err;
+	   	if(!user) {
+	   		return done(null, false, {message: 'The user account doesn\'t exist! Please sign up first.'});
    	}
 
-   	User.comparePassword(password, user.password, function(err, isMatch) {
+   	comparePassword(password, user.dataValues.password, function(err, isMatch) {
    		if(err) throw err;
    		if(isMatch) {
    			return done(null, user);
    		} else {
-   			return done(null, false, {message: 'Invalid password'});
+   			return done(null, false, {message: 'Wrong password! Try again.'});
    		}
    	});
    });
-  }));
+  })
+);
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user.dataValues.user_id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.getUserById(id, function(err, user) {
-    done(err, user);
+  models.User.find({where: {user_id: id}}).then(function(user){
+    done(null, user);
+  }).error(function(err){
+    done(err, null);
   });
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/bundles/dashboard', failureRedirect:'/user/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/bundles/dashboard', failureRedirect:'/user/login', failureFlash: true}),
   function(req, res) {
-    res.redirect('/dashboard');
+    res.redirect('/bundles/dashboard');
 });
 
 module.exports = router;

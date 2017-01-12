@@ -12,45 +12,45 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
 
-    var userAerophin;
-    var newFarmer;
+    // var userAerophin;
+    // var newFarmer;
 
-    return models.User.findOne({
-      where: {
-        user_id: 1
-      }
-    })
-    .then(function(user) {
-      userAerophin = user;
-    })
-    .then(function() {
-      return models.Farmer.create(
-        {
-          name: 'Aeropi',
-          Boilerroom: {},
-          Bulletinboard: {},
-          Craftsroom: {},
-          Fishtank: {},
-          Pantry: {},
-          Vault: {}
-        },
-        {
-          include:
-            [
-              models.Boilerroom,
-              models.Bulletinboard,
-              models.Craftsroom,
-              models.Fishtank,
-              models.Pantry,
-              models.Vault
-            ]
-        }
-      )
-    })
-    .then(function(farmer) {
-      newFarmer = farmer;
-      return userAerophin.addFarmer(newFarmer);
-    })
+    // return models.User.findOne({
+    //   where: {
+    //     user_id: 1
+    //   }
+    // })
+    // .then(function(user) {
+    //   userAerophin = user;
+    // })
+    // .then(function() {
+    //   return models.Farmer.create(
+    //     {
+    //       name: 'Aeropi',
+    //       Boilerroom: {},
+    //       Bulletinboard: {},
+    //       Craftsroom: {},
+    //       Fishtank: {},
+    //       Pantry: {},
+    //       Vault: {}
+    //     },
+    //     {
+    //       include:
+    //         [
+    //           models.Boilerroom,
+    //           models.Bulletinboard,
+    //           models.Craftsroom,
+    //           models.Fishtank,
+    //           models.Pantry,
+    //           models.Vault
+    //         ]
+    //     }
+    //   )
+    // })
+    // .then(function(farmer) {
+    //   newFarmer = farmer;
+    //   return userAerophin.addFarmer(newFarmer);
+    // })
   },
 
   down: function (queryInterface, Sequelize) {
@@ -62,10 +62,10 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
 
-    return models.Farmer.destroy({
-      where: {
-        name: 'Aeropi'
-      }
-    })
+    // return models.Farmer.destroy({
+    //   where: {
+    //     name: 'Aeropi'
+    //   }
+    // })
   }
 };

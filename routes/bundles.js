@@ -6,17 +6,16 @@ router.get('/', function(req, res){
 	res.redirect('/bundles/dashboard');
 });
 
-router.get('/dashboard', ensureAuthenticated, function(req, res){
-	res.render('dashboard', { title: 'Dashboard', isBundlePage: true });
+router.get('/dashboard', function(req, res){
+	if(req.isAuthenticated()){
+		res.render('dashboard', { title: 'Dashboard', isBundlePage: true });
+	} else {
+		res.redirect('/user/login');
+	}
 });
 
 function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/user/login');
-	}
+
 }
 
 router.get('/boilerroom', function(req, res){
