@@ -13,7 +13,10 @@ module.exports = {
 			},
 			name: {
 				type: Sequelize.STRING,
-				allowNull: false
+				allowNull: false,
+				validate: {
+					is: /^[a-z0-9\_\- ]+$/i,
+				}
 			},
 			createdAt: {
 				allowNull: false,

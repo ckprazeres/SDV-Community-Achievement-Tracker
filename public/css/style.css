@@ -19,14 +19,6 @@ i, em {
 	font-style: italic;
 }
 
-* {	
-    -ms-transition: all .1s ease-in-out;
-    -moz-transition: all .1s ease-in-out;
-    -webkit-transition: all .1s ease-in-out;
-    -o-transition: all .1s ease-in-out;
-    transition: all .1s ease-in-out;
-}
-
 
 /* ---------------------- Links ---------------------- */
 
@@ -38,6 +30,14 @@ a {
 
 a:hover {
 	text-decoration: none;
+}
+
+a, a:hover {
+	-ms-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	-webkit-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
 }
 
 
@@ -54,6 +54,11 @@ h1 {
 
 h1 a, h1 a:hover {
 	color: #e0a100;
+	-ms-transition: all 0s ease-in-out;
+	-moz-transition: all 0s ease-in-out;
+	-webkit-transition: all 0s ease-in-out;
+	-o-transition: all 0s ease-in-out;
+	transition: all 0s ease-in-out;
 }
 
 span#sdv-title {
@@ -152,6 +157,14 @@ h2 {
 	vertical-align: middle;
 }
 
+code {
+  font-family: Courier;
+  font-style: italic;
+}
+
+
+/* ---------------------- Forms ---------------------- */
+
 form {
 	width: 50%;
 	margin: auto;
@@ -161,7 +174,7 @@ label {
 	font-weight: bold;
 }
 
-input, button[type=submit] {
+input {
 	display: block;
 	background: #ffe5bd;
 	width: 100%;
@@ -177,6 +190,62 @@ input, button[type=submit] {
 	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
 }
 
+button[type=submit] {
+	font-weight: bold;
+	display: block;
+	background: #e2992b;
+	width: 100%;
+	margin: 25px 0;
+	padding: 5px;
+	border-top: 1px solid #5b2b2a;
+	border-right: 1px solid #5b2b2a;
+	border-bottom: 1px solid #965c3a;
+	border-left: 1px solid #965c3a;
+	border-radius: 5px;
+	-webkit-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	-moz-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	-ms-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	-webkit-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
+}
+
+button[type=submit]:hover {
+	background: #efd2a6;
+	-ms-transition: all .1s ease-in-out;
+	-moz-transition: all .1s ease-in-out;
+	-webkit-transition: all .1s ease-in-out;
+	-o-transition: all .1s ease-in-out;
+	transition: all .1s ease-in-out;
+}
+
+@media screen and (max-width: 1000px) {
+	form {
+		width: 85%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	form {
+		width: 100%;
+	}
+}
+
+
+/* ---------------------- Alerts ---------------------- */
+
+.alert {
+	width: 75%;
+	margin: 25px auto;
+}
+
+@media screen and (max-width: 500px) {
+	.alert {
+		width: 100%;
+	}
+}
 
 /* ---------------------- Footer ---------------------- */
 

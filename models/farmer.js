@@ -10,12 +10,14 @@ module.exports = function(sequelize, DataTypes) {
     user_id: DataTypes.INTEGER,
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        is: /^[a-z0-9\_\- ]+$/i,
+      }
     }
   }, {
     classMethods: {
       associate: function(models) {
-        // Farmer.belongsTo(models.User)
         Farmer.hasOne(models.Boilerroom, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
         Farmer.hasOne(models.Bulletinboard, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
         Farmer.hasOne(models.Craftsroom, {foreignKey: 'farmer_id', onDelete: 'cascade', hooks:true});
