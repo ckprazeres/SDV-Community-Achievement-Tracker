@@ -86,11 +86,13 @@ var routes = require('./routes/routes');
 var user = require('./routes/user');
 var bundles = require('./routes/bundles');
 var farmers = require('./routes/farmers');
+var account = require('./routes/account');
 
 //Regular routes
 app.use('/', routes);
 app.use('/user', user);
 app.use('/user/farmers', farmers);
+app.use('/user/account', account);
 app.use('/bundles', bundles);
 
 //404 routes

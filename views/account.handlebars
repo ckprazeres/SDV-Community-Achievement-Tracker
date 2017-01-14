@@ -1,0 +1,12 @@
+<p>Change your account settings.</p>
+
+<h3>Update Email</h3>
+
+<p>Your email address is used for password reset requests. Please keep your email updated.</p>
+
+<section class="settings-email">
+	<form action="/user/account/email/update" method="post">
+		<input type="email" name="email" value="{{user.dataValues.email}}" required>
+		<button type="submit">Update Email!</button>
+	</form>
+</section>

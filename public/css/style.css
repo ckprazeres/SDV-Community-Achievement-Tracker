@@ -138,6 +138,17 @@ h2 {
 	font-weight: bold;
 }
 
+h3 {
+	font-size: 24px;
+	margin-bottom: 6px;
+	font-weight: bold;
+}
+
+p {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
 @media screen and (max-width: 500px) {
 	body {
 		font-size: 14px;
@@ -145,6 +156,10 @@ h2 {
 
 	h2 {
 		font-size: 24px;
+	}
+
+	h3 {
+		font-size: 20px;
 	}
 }
 
@@ -205,20 +220,10 @@ button[type=submit] {
 	-webkit-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
 	-moz-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
 	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
-	-ms-transition: all .1s ease-in-out;
-	-moz-transition: all .1s ease-in-out;
-	-webkit-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out;
 }
 
 button[type=submit]:hover {
 	background: #efd2a6;
-	-ms-transition: all .1s ease-in-out;
-	-moz-transition: all .1s ease-in-out;
-	-webkit-transition: all .1s ease-in-out;
-	-o-transition: all .1s ease-in-out;
-	transition: all .1s ease-in-out;
 }
 
 @media screen and (max-width: 1000px) {
@@ -233,6 +238,23 @@ button[type=submit]:hover {
 	}
 }
 
+
+/* ---------------------- Farmers List ---------------------- */
+
+.farmers-list {
+	overflow: auto;
+	margin: auto;
+}
+
+.farmers-list-item {
+	display: block;
+	text-align: center;
+	height: 150px;
+	border: 1px solid;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 15px;
+}
 
 /* ---------------------- Alerts ---------------------- */
 

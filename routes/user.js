@@ -78,8 +78,14 @@ function createUser(newUser, callback) {
 		})
 		.then(function(farmer) {
 			newFarmer = farmer;
+
 			newChara.addFarmer(newFarmer);
-			newChara.update({current_farmer_id: newFarmer.farmer_id, current_farmer_name: newFarmer.name});
+
+			newChara.update({
+				current_farmer_id: newFarmer.farmer_id,
+				current_farmer_name: newFarmer.name
+			});
+			
 			callback();
 		})
 		// .then(callback);
@@ -138,16 +144,6 @@ router.get('/logout', function(req, res) {
 		req.flash('success_msg', 'You are now logged out.');
 		res.redirect('/');
 	} else {
-		res.redirect('/user/login');
-	}
-});
-
-//Show user account settings
-router.get('/account', function(req, res) {
-	if(req.isAuthenticated()) {
-		res.render('account', { title: 'Account Settings' });
-	} else {
-		req.flash('error_msg', 'You are not logged in.');
 		res.redirect('/user/login');
 	}
 });
