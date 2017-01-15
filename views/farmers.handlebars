@@ -1,15 +1,15 @@
-Here is a list of your farmers. You can change the current farmer to track a different save file, add a new farmer, or delete a farmer.<br><br>
+<p>Here is a list of your farmers. You can change the current farmer to track a different save file, add a new farmer, or delete a farmer.</p>
 
 <section class="farmers-list">
 {{#each farmers}}
-	<div class="col-xs-12 col-sm-6 col-md-2">
+	<div class="col-xs-12 col-sm-6 col-md-3">
 		<div class="farmers-list-item">
 
-			<form action="/user/farmers/delete/{{this.farmer_id}}" method="post">
-				<button type="submit">x</button>
+			<form class="farmer-delete" action="/user/farmers/delete/{{this.farmer_id}}" method="post" onsubmit="return confirm('Do you really want to delete this farmer?');">
+				<button type="submit" title="Delete Farmer" aria-label="Delete Farmer"><i class="fa fa-trash" aria-hidden="true" title="Delete Farmer"></i></button>
 			</form>
 
-			<form action="/user/farmers/update/{{this.farmer_id}}" method="post">
+			<form class="farmer-update" action="/user/farmers/update/{{this.farmer_id}}" method="post">
 				<button type="submit">{{this.name}}</button>
 			</form>
 		</div>
@@ -22,7 +22,7 @@ Here is a list of your farmers. You can change the current farmer to track a dif
 <form method="post" action="/user/farmers/add">
   <div>
     <label>Farmer's Name</label>
-    <input type="text" name="name" placeholder="i.e. Sally">
+    <input type="text" name="name" placeholder="e.g. Sally" maxlength="20" required>
   </div>
   <button type="submit" class="btn btn-default">Add New Farmer!</button>
 </form>

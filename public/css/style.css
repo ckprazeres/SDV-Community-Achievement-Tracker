@@ -239,6 +239,43 @@ button[type=submit]:hover {
 }
 
 
+/* ---------------------- Farmer's Page Forms ---------------------- */
+
+.farmers-list button {
+  margin: 0;
+  width: initial;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.farmers-list button:hover {
+  background: none;
+	color: #a75517;
+}
+
+.farmers-list form.farmer-delete {
+	width: initial;
+}
+
+.farmers-list form.farmer-delete button {
+	float: right;
+	font-weight: bold;
+}
+
+.farmers-list form.farmer-update {
+	width: 100%;
+	clear: both;
+}
+
+.farmers-list form.farmer-update button {
+	width: 100%;
+  box-sizing: content-box;
+  font-size: 20px;
+  height: 100px;
+  padding-bottom: 34px;
+}
+
 /* ---------------------- Farmers List ---------------------- */
 
 .farmers-list {
@@ -249,11 +286,15 @@ button[type=submit]:hover {
 .farmers-list-item {
 	display: block;
 	text-align: center;
-	height: 150px;
-	border: 1px solid;
-	border-radius: 10px;
+	overflow: auto;
+	min-height: 150px;
 	padding: 15px;
 	margin-bottom: 15px;
+	border: 2px solid #b16232;
+	border-radius: 10px;
+	-webkit-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	-moz-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
 }
 
 /* ---------------------- Alerts ---------------------- */

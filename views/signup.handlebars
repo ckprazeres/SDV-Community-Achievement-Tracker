@@ -1,7 +1,7 @@
 <form method="post" action="/user/signup">
   <div>
     <label>Username</label>
-    <input type="text" placeholder="Username" name="username" minlength="4" required>
+    <input type="text" placeholder="Username" name="username" minlength="4" maxlength="20" required>
   </div>
    <div>
     <label>Email</label>
@@ -9,7 +9,7 @@
   </div>
    <div>
     <label>Farmer's Name</label> <span class="sdv-tooltips" data-toggle="tooltip" title="The name of your farmer in your save file">?</span>
-    <input type="text" placeholder="i.e. Sally" name="farmer" maxlength="20" required>
+    <input type="text" placeholder="e.g. Sally" name="farmer" maxlength="20" required>
   </div>
   <div>
     <label>Password</label>
