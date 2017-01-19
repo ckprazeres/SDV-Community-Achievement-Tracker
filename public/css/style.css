@@ -24,12 +24,13 @@ i, em {
 
 a {
 	text-decoration: none;
-	color: #0983f6;
+	color: #577DA6;
 	font-weight: bold;
 }
 
 a:hover {
 	text-decoration: none;
+	color: #224D7C;
 }
 
 a, a:hover {
@@ -101,7 +102,7 @@ span#sdv-title {
 	margin: auto;
 	background: url('../images/nameplate_left.gif'), url('../images/nameplate_right.gif');
 	background-repeat: no-repeat, no-repeat;
-	background-position: left top, right top;
+	background-position: left center, right top;
 	vertical-align: middle;
 	line-height: 54px;
 }
@@ -121,6 +122,7 @@ span#sdv-title {
 
 main {
 	background: #ffcb7b;
+	overflow: auto;
 	border-radius: 10px;
 	margin: 30px 0;
 	padding: 10px;
@@ -173,8 +175,8 @@ p {
 }
 
 code {
-  font-family: Courier;
-  font-style: italic;
+	font-family: Courier;
+	font-style: italic;
 }
 
 
@@ -242,15 +244,15 @@ button[type=submit]:hover {
 /* ---------------------- Farmer's Page Forms ---------------------- */
 
 .farmers-list button {
-  margin: 0;
-  width: initial;
-  background: none;
-  border: 0;
-  box-shadow: none;
+	margin: 0;
+	width: initial;
+	background: none;
+	border: 0;
+	box-shadow: none;
 }
 
 .farmers-list button:hover {
-  background: none;
+	background: none;
 	color: #a75517;
 }
 
@@ -270,10 +272,10 @@ button[type=submit]:hover {
 
 .farmers-list form.farmer-update button {
 	width: 100%;
-  box-sizing: content-box;
-  font-size: 20px;
-  height: 100px;
-  padding-bottom: 34px;
+	box-sizing: content-box;
+	font-size: 20px;
+	height: 100px;
+	padding-bottom: 34px;
 }
 
 /* ---------------------- Farmers List ---------------------- */
@@ -297,6 +299,44 @@ button[type=submit]:hover {
 	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
 }
 
+
+/* ---------------------- Bundle Pages ---------------------- */
+
+.bundle-col {
+	padding: 0;
+}
+
+nav.bundle-col {
+	padding-right: 30px;
+}
+
+ul.bundle-nav li {
+	width: 100%;
+	border-bottom: 1px dashed #b16232;
+}
+
+ul.bundle-nav li:last-child {
+	border-bottom: 0;
+}
+
+ul.bundle-nav li a {
+	display: block;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+  color: #BE6F29;
+}
+
+ul.bundle-nav li a:hover {
+	color: #DD914E;
+	margin-left: 20px;
+}
+
+ul.bundle-nav li a.active {
+	margin-left: 20px;
+}
+
+
 /* ---------------------- Alerts ---------------------- */
 
 .alert {
@@ -308,6 +348,49 @@ button[type=submit]:hover {
 	.alert {
 		width: 100%;
 	}
+}
+
+
+/* ---------------------- Special Image Classes ---------------------- */
+
+a[href="/user/account"], .user {
+	padding-left: 20px;
+	background: url('../images/user.gif') no-repeat left top;
+}
+
+a[href="/user/farmers"], .farmer {
+	padding-left: 20px;
+	background: url('../images/farmer.gif') no-repeat left top;
+}
+
+a[href="/bundles/boilerroom"], .boilerroom {
+	padding-left: 20px;
+	background: url('../images/bundle-red.gif') no-repeat left center;
+}
+
+a[href="/bundles/bulletinboard"], .bulletinboard {
+	padding-left: 20px;
+	background: url('../images/bundle-orange.gif') no-repeat left center;
+}
+
+a[href="/bundles/craftsroom"], .craftsroom {
+	padding-left: 20px;
+	background: url('../images/bundle-yellow.gif') no-repeat left center;
+}
+
+a[href="/bundles/fishtank"], .fishtank {
+	padding-left: 20px;
+	background: url('../images/bundle-green.gif') no-repeat left center;
+}
+
+a[href="/bundles/pantry"], .pantry {
+	padding-left: 20px;
+	background: url('../images/bundle-blue.gif') no-repeat left center;
+}
+
+a[href="/bundles/vault"], .vault {
+	padding-left: 20px;
+	background: url('../images/bundle-purple.gif') no-repeat left center;
 }
 
 /* ---------------------- Footer ---------------------- */

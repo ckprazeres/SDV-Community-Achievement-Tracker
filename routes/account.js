@@ -32,40 +32,38 @@ function updateEmail(newEmail,userID, callback) {
 	})
 }
 
+function isAuthenticated(req, res, callback){
+	if(req.isAuthenticated()){
+		return callback();
+	} else {
+		res.redirect('/user/login');
+	}
+}
+
 // --------------------------------------------------------------------
 // Routes
 // --------------------------------------------------------------------
 
-router.get('/', function(req, res) {
-	if(req.isAuthenticated()) {
-			res.render('account', { title: 'Account Settings' });
-		}
-	else {
-		res.redirect('/user/login');
-	}
+router.get('/', isAuthenticated, function(req, res) {
+	res.render('account', { title: 'Account Settings' });
 });
 
 router.post('/email/update', function(req, res) {
-	if(req.isAuthenticated()) {
-		var newEmail = req.body.email;
-		var userID = req.user.dataValues.user_id;
+	var newEmail = req.body.email;
+	var userID = req.user.dataValues.user_id;
 
-		updateEmail(newEmail, userID, function(err) {
-			if(err) {
-					console.log('ERROR OCCURED', err.errors[0].message);
-					req.flash('error_msg', err.errors[0].message);
-					res.redirect('/user/account');
-				}
-				else {
-					console.log('Email updated');
-					req.flash('success_msg', 'Email has been successfully updated!');
-					res.redirect('/user/account');
-				}
-		})
-	}
-	else {
-		res.redirect('/user/login');
-	}
+	updateEmail(newEmail, userID, function(err) {
+		if(err) {
+				console.log('ERROR OCCURED', err.errors[0].message);
+				req.flash('error_msg', err.errors[0].message);
+				res.redirect('/user/account');
+			}
+			else {
+				console.log('Email updated');
+				req.flash('success_msg', 'Email has been successfully updated!');
+				res.redirect('/user/account');
+			}
+	})
 });
 
 module.exports = router;

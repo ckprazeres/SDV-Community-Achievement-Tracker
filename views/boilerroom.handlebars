@@ -1,0 +1,10 @@
+<script src="/javascript/boilerroom.js" data-farmer_id="{{user.dataValues.current_farmer_id}}"></script>
+
+<p>Here are the stats for <a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a>'s {{#if subtitle}}{{subtitle}}{{else}}{{title}}{{/if}}.</p>
+
+<div id="boilerroom-stats">
+	<div class="progress">
+	  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+	  </div>
+	</div>
+</div>

@@ -88,7 +88,6 @@ function createUser(newUser, callback) {
 			
 			callback();
 		})
-		// .then(callback);
 		.catch(function(err) {
 			console.log('Sequelize error: ', err);
 			rewriteErrors(err, function(err) {
@@ -105,7 +104,6 @@ function getUserByUsername(username, callback) {
 	})
 }
 
-
 function comparePassword(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
 			if(err) throw err;
@@ -116,6 +114,10 @@ function comparePassword(candidatePassword, hash, callback) {
 // --------------------------------------------------------------------
 // Get Routes
 // --------------------------------------------------------------------
+
+router.get('/', function(req, res) {
+	res.redirect('/user/login')
+})
 
 // Sign Up
 router.get('/signup', function(req, res) {

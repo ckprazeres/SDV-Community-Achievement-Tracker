@@ -12,7 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Karla" rel="stylesheet">
 	<title>
 		{{#if title}}
-			{{title}} - 
+			{{title}}{{#if subtitle}} - {{subtitle}}{{/if}} - 
 		{{/if}}
 		Stardew Valley Community Achievement Tracker
 	</title>
@@ -30,9 +30,11 @@
 					<div class="text-center nameplate">
 						<div class="nameplate-name">
 							{{#if user}}
-								<a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a> | 
-								<a href="/user/account">{{user.dataValues.username}}</a> (<a href="/user/logout">logout</a>)
+								<a href="/user/account">{{user.dataValues.username}}</a> ::
+								<a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a> ||
 								<a href="/bundles/dashboard">Bundles Tracker</a>
+								<a href="/user/account/">Account Settings</a>
+								<a href="/user/logout">logout</a>
 							{{else}}
 								<a href="/user/login">Login</a>
 								<a href="/user/signup">Register</a>
@@ -43,29 +45,45 @@
 			</header>
 
 			<main>
-				{{#if header}}
-					<h2>{{header}}</h2>
-				{{else}}
-					<h2>{{title}}</h2>
-				{{/if}}
-
-				{{#if success_msg}}
-					<div class="alert alert-success">{{{success_msg}}}</div>
-				{{/if}}
-
-				{{#if error_msg}}
-					<div class="alert alert-danger">{{{error_msg}}}</div>
-				{{/if}}
-
-				{{#if error}}
-					<div class="alert alert-danger">{{{error}}}</div>
-				{{/if}}
-          
 				{{#if isBundlePage}}
-					Bundle navigation<br><br>
+					<nav class="bundle-col col-xs-12 col-sm-3">
+						<h2>Bundles</h2>
+						<ul class="bundle-nav">
+							<li><a href="/bundles/boilerroom"{{#if isBoilerroomPage}} class="active"{{/if}}>Boiler Room</a></li>
+							<li><a href="/bundles/bulletinboard"{{#if isBulletinboardPage}} class="active"{{/if}}>Bulletin Board</a></li>
+							<li><a href="/bundles/craftsroom"{{#if isCraftsroomPage}} class="active"{{/if}}>Crafts Room</a></li>
+							<li><a href="/bundles/fishtank"{{#if isFishtankPage}} class="active"{{/if}}>Fish Tank</a></li>
+							<li><a href="/bundles/pantry"{{#if isPantryPage}} class="active"{{/if}}>Pantry</a></li>
+							<li><a href="/bundles/vault"{{#if isVaultPage}} class="active"{{/if}}>Vault</a></li>
+						</ul>
+					</nav>
+
+					<div class="bundle-col col-xs-12 col-sm-9">
 				{{/if}}
 
-				{{{body}}}
+					{{#if header}}
+						<h2>{{header}}</h2>
+					{{else}}
+						<h2>{{title}}{{#if subtitle}} - {{subtitle}}{{/if}}</h2>
+					{{/if}}
+
+					{{#if success_msg}}
+						<div class="alert alert-success">{{{success_msg}}}</div>
+					{{/if}}
+
+					{{#if error_msg}}
+						<div class="alert alert-danger">{{{error_msg}}}</div>
+					{{/if}}
+
+					{{#if error}}
+						<div class="alert alert-danger">{{{error}}}</div>
+					{{/if}}
+
+					{{{body}}}
+
+				{{#if isBundlePage}}
+					</div>
+				{{/if}}
 			</main>
 
 			<footer class="text-center">
