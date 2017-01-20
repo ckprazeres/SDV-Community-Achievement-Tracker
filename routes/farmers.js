@@ -49,7 +49,6 @@ router.get('/', isAuthenticated, function(req, res) {
 		where: {
 			user_id: req.user.dataValues.user_id,
 		}
-		// raw: true
 	})
 	.then(function(data) {
 		var farmersList = { farmers: data };

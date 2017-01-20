@@ -12,7 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Karla" rel="stylesheet">
 	<title>
 		{{#if title}}
-			{{title}}{{#if subtitle}} - {{subtitle}}{{/if}} - 
+			{{title}}{{#if subtitle}}: {{subtitle}}{{/if}} - 
 		{{/if}}
 		Stardew Valley Community Achievement Tracker
 	</title>
@@ -49,12 +49,13 @@
 					<nav class="bundle-col col-xs-12 col-sm-3">
 						<h2>Bundles</h2>
 						<ul class="bundle-nav">
-							<li><a href="/bundles/boilerroom"{{#if isBoilerroomPage}} class="active"{{/if}}>Boiler Room</a></li>
-							<li><a href="/bundles/bulletinboard"{{#if isBulletinboardPage}} class="active"{{/if}}>Bulletin Board</a></li>
-							<li><a href="/bundles/craftsroom"{{#if isCraftsroomPage}} class="active"{{/if}}>Crafts Room</a></li>
-							<li><a href="/bundles/fishtank"{{#if isFishtankPage}} class="active"{{/if}}>Fish Tank</a></li>
-							<li><a href="/bundles/pantry"{{#if isPantryPage}} class="active"{{/if}}>Pantry</a></li>
-							<li><a href="/bundles/vault"{{#if isVaultPage}} class="active"{{/if}}>Vault</a></li>
+							<li><a class="vault" href="/bundles">Dashboard</a></li>
+							<li><a class="boilerroom {{#if isBoilerroomPage}} active{{/if}}" href="/bundles/boilerroom">Boiler Room</a></li>
+							<li><a class="bulletinboard {{#if isBulletinboardPage}} active{{/if}}" href="/bundles/bulletinboard">Bulletin Board</a></li>
+							<li><a class="craftsroom {{#if isCraftsroomPage}} active{{/if}}" href="/bundles/craftsroom">Crafts Room</a></li>
+							<li><a class="fishtank {{#if isFishtankPage}} active{{/if}}" href="/bundles/fishtank">Fish Tank</a></li>
+							<li><a class="pantry {{#if isPantryPage}} active{{/if}}" href="/bundles/pantry">Pantry</a></li>
+							<li><a class="vault {{#if isVaultPage}} active{{/if}}" href="/bundles/vault">Vault</a></li>
 						</ul>
 					</nav>
 
@@ -64,7 +65,7 @@
 					{{#if header}}
 						<h2>{{header}}</h2>
 					{{else}}
-						<h2>{{title}}{{#if subtitle}} - {{subtitle}}{{/if}}</h2>
+						<h2>{{title}}{{#if subtitle}}: {{subtitle}}{{/if}}</h2>
 					{{/if}}
 
 					{{#if success_msg}}

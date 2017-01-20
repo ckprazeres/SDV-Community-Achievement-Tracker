@@ -100,7 +100,7 @@ span#sdv-title {
 	max-height: 54px;
 	width: 75%;
 	margin: auto;
-	background: url('../images/nameplate_left.gif'), url('../images/nameplate_right.gif');
+	background: url('../images/nameplate_left.png'), url('../images/nameplate_right.png');
 	background-repeat: no-repeat, no-repeat;
 	background-position: left center, right top;
 	vertical-align: middle;
@@ -108,7 +108,7 @@ span#sdv-title {
 }
 
 .nameplate-name {
-	background: url('../images/nameplate_bg.gif');
+	background: url('../images/nameplate_bg.png');
 	background-repeat: repeat-x;
 	height: 54px;
 	max-height: 54px;
@@ -336,6 +336,52 @@ ul.bundle-nav li a.active {
 	margin-left: 20px;
 }
 
+.bundle-progress-item {
+	display: block;
+	text-align: center;
+	overflow: auto;
+	min-height: 150px;
+	padding: 15px;
+	margin-bottom: 15px;
+	border: 2px solid #b16232;
+	border-radius: 10px;
+	-webkit-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	-moz-box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+	box-shadow: -2px 2px 2px 0px #cca36b, inset -1px 1px 2px 0px #dc7b05;
+}
+
+.bundle-progress-item h3 {
+	font-size: 18px;
+}
+
+.bundle-progress-item .btn {
+	width: 100px;
+}
+
+.bundle-progress-item a img {
+	margin-bottom: 10px;
+}
+
+/* ---------------------- Progress Bars ---------------------- */
+
+.progress {
+	background-color: #ffd68a;
+	box-shadow:
+		0 0 0 1px #b04e05,
+		0 0 0 3px #d97c0c,
+		0 0 0 4px #5d2b22,
+		inset 0 0 0 1px #d6a784;
+}
+
+.progress-bar {
+	background-color: #5fc706;
+	color: #4c4c4c;
+}
+
+.progress-bar::before {
+    content: "\00a0\00a0";
+}
+
 
 /* ---------------------- Alerts ---------------------- */
 
@@ -355,42 +401,42 @@ ul.bundle-nav li a.active {
 
 a[href="/user/account"], .user {
 	padding-left: 20px;
-	background: url('../images/user.gif') no-repeat left top;
+	background: url('../images/user.png') no-repeat left top;
 }
 
 a[href="/user/farmers"], .farmer {
 	padding-left: 20px;
-	background: url('../images/farmer.gif') no-repeat left top;
+	background: url('../images/farmer.png') no-repeat left top;
 }
 
-a[href="/bundles/boilerroom"], .boilerroom {
+a.boilerroom {
 	padding-left: 20px;
-	background: url('../images/bundle-red.gif') no-repeat left center;
+	background: url('../images/bundle-red.png') no-repeat left center;
 }
 
-a[href="/bundles/bulletinboard"], .bulletinboard {
+a.bulletinboard {
 	padding-left: 20px;
-	background: url('../images/bundle-orange.gif') no-repeat left center;
+	background: url('../images/bundle-orange.png') no-repeat left center;
 }
 
-a[href="/bundles/craftsroom"], .craftsroom {
+a.craftsroom {
 	padding-left: 20px;
-	background: url('../images/bundle-yellow.gif') no-repeat left center;
+	background: url('../images/bundle-yellow.png') no-repeat left center;
 }
 
-a[href="/bundles/fishtank"], .fishtank {
+a.fishtank {
 	padding-left: 20px;
-	background: url('../images/bundle-green.gif') no-repeat left center;
+	background: url('../images/bundle-green.png') no-repeat left center;
 }
 
-a[href="/bundles/pantry"], .pantry {
+a.pantry {
 	padding-left: 20px;
-	background: url('../images/bundle-blue.gif') no-repeat left center;
+	background: url('../images/bundle-blue.png') no-repeat left center;
 }
 
-a[href="/bundles/vault"], .vault {
+a.vault {
 	padding-left: 20px;
-	background: url('../images/bundle-purple.gif') no-repeat left center;
+	background: url('../images/bundle-purple.png') no-repeat left center;
 }
 
 /* ---------------------- Footer ---------------------- */

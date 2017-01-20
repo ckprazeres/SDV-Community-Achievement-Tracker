@@ -2,9 +2,77 @@
 
 <p>Here are the stats for <a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a>'s {{#if subtitle}}{{subtitle}}{{else}}{{title}}{{/if}}.</p>
 
-<div id="boilerroom-stats">
-	<div class="progress">
-	  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-	  </div>
+
+<section class="bundle-progress">
+
+{{#if isIndex}}
+	<div class="col-xs-12">
+		<div id="boilerroom">
+
+			<h3>Total Progress</h3>
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+			  </div>
+			</div>
+
+		</div>
 	</div>
-</div>
+
+	{{#each bundles}}
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="bundle-progress-item" id="{{this.id}}">
+
+				<a href="/bundles/boilerroom/{{this.id}}">
+					<h3>{{this.name}}</h3>
+					<img src="/images/bundle-pictures/{{this.id}}.png">
+				</a>
+
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+				  </div>
+				</div>
+
+				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Track</a>
+
+			</div>
+		</div>
+	{{/each}}
+{{/if}}
+
+{{#if isBlacksmiths}}
+	<div class="col-xs-12">
+		<div id="blacksmiths">
+
+			<h3>Total Progress</h3>
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+			  </div>
+			</div>
+
+		</div>
+	</div>
+
+	{{#each bundleItems}}
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="bundle-progress-item" id="{{this.id}}">
+
+				<h3>{{this.name}}</h3>
+				<p><img src="/images/bundle-items/{{this.id}}.png"></p>
+
+				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Completed</a>
+
+			</div>
+		</div>
+	{{/each}}
+
+{{/if}}
+
+{{#if isGeologists}}
+Geologists
+{{/if}}
+
+{{#if isAdventurers}}
+Adventurers
+{{/if}}
+
+</section>
