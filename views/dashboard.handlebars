@@ -15,111 +15,23 @@
 		</div>
 	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="boilerroom">
+	{{#each bundles}}
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="bundle-progress-item" id="{{this.id}}">
 
-			<a href="/bundles/boilerroom">
-				<h3>Boiler Room</h3>
-				<img src="/images/bundle-pictures/geologists.png">
-			</a>
+				<a href="/bundles/{{this.id}}">
+					<h3>{{this.name}}</h3>
+					<img src="/images/bundle-pictures/{{this.picture}}.png">
+				</a>
 
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+				  </div>
+				</div>
+
+				<a class="btn btn-primary" href="/bundles/{{this.id}}">Track</a>
+
 			</div>
-
-			<a class="btn btn-primary" href="/bundles/boilerroom">Track</a>
-
 		</div>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="bulletinboard">
-
-			<a href="/bundles/bulletinboard">
-				<h3>Bulletin Board</h3>
-				<img src="/images/bundle-pictures/fodder.png">
-			</a>
-
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-			<a class="btn btn-primary" href="/bundles/bulletinbord">Track</a>
-
-		</div>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="craftsroom">
-
-			<a href="/bundles/craftsroom">
-				<h3>Crafts Room</h3>
-				<img src="/images/bundle-pictures/fallforaging.png">
-			</a>
-
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-			<a class="btn btn-primary" href="/bundles/craftsroom">Track</a>
-
-		</div>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="fishtank">
-
-			<a href="/bundles/fishtank">
-				<h3>Fish Tank</h3>
-				<img src="/images/bundle-pictures/nightfishing.png">
-			</a>
-
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-			<a class="btn btn-primary" href="/bundles/fishtank">Track</a>
-
-		</div>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="pantry">
-
-			<a href="/bundles/pantry">
-				<h3>Pantry</h3>
-				<img src="/images/bundle-pictures/artisan.png">
-			</a>
-
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-			<a class="btn btn-primary" href="/bundles/pantry">Track</a>
-
-		</div>
-	</div>
-
-	<div class="col-xs-12 col-sm-6 col-md-4">
-		<div class="bundle-progress-item" id="vault">
-
-			<a href="/bundles/vault">
-				<h3>Vault</h3>
-				<img src="/images/bundle-pictures/25000.png">
-			</a>
-
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-			<a class="btn btn-primary" href="/bundles/vault">Track</a>
-
-		</div>
-	</div>
+	{{/each}}
 </section>

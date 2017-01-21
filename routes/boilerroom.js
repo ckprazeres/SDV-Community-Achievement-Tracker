@@ -61,6 +61,12 @@ router.get('/geologists', isAuthenticated, function(req, res){
 	pageInfo.isBlacksmiths = false;
 	pageInfo.isGeologists = true;
 	pageInfo.isAdventurers = false;
+	pageInfo.bundleItems = [
+		{id: 'geologists_quartz', name: 'Quartz'},
+		{id: 'geologists_earthcrystal', name: 'Earth Crystal'},
+		{id: 'geologists_frozentear', name: 'Frozen Tear'},
+		{id: 'geologists_firequartz', name: 'Fire Quartz'}
+	];
 	res.render('boilerroom', pageInfo);
 });
 
@@ -70,6 +76,12 @@ router.get('/adventurers', isAuthenticated, function(req, res){
 	pageInfo.isBlacksmiths = false;
 	pageInfo.isGeologists = false;
 	pageInfo.isAdventurers = true;
+	pageInfo.bundleItems = [
+		{id: 'adventurers_slime', name: 'Slime'},
+		{id: 'adventurers_batwing', name: 'Bat Wing'},
+		{id: 'adventurers_solaressence', name: 'Solar Essence'},
+		{id: 'adventurers_voidessence', name: 'Void Essence'}
+	];
 	res.render('boilerroom', pageInfo);
 });
 

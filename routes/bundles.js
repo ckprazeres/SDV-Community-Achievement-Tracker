@@ -23,7 +23,19 @@ router.get('/', function(req, res){
 });
 
 router.get('/dashboard', isAuthenticated, function(req, res){
-		res.render('dashboard', { title: 'Dashboard', isBundlePage: true });
+	pageInfo = {
+		title: 'Dashboard',
+		isBundlePage: true,
+		bundles: [
+			{id: 'boilerroom', name: 'Boiler Room', picture: 'geologists'},
+			{id: 'bulletinboard', name: 'Bulletin Board', picture: 'fodder'},
+			{id: 'craftsroom', name: 'Crafts Room', picture: 'fallforaging'},
+			{id: 'fishtank', name: 'Fish Tank', picture: 'nightfishing'},
+			{id: 'pantry', name: 'Pantry', picture: 'artisan'},
+			{id: 'vault', name: 'Vault', picture: '25000'}
+		]
+	};
+	res.render('dashboard', pageInfo);
 });
 
 router.get('/bulletinboard', isAuthenticated, function(req, res){
