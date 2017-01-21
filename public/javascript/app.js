@@ -602,13 +602,13 @@ function getItemStatus(room) {
 			if ($('div#' + bundleItems[i])) {
 				if (res[bundleItems[i]] == 0) {
 					//If item is missing
-					$('button#' + bundleItems[i]).html('Missing');
+					$('button#' + bundleItems[i]).html('<i class="fa fa-square-o" aria-hidden="true"></i> Missing');
 					$('button#' + bundleItems[i]).removeClass('btn-primary');
 					$('button#' + bundleItems[i]).addClass('btn-danger');
 				}
 				else if (res[bundleItems[i]] == 1) {
 					//If item is completed
-					$('button#' + bundleItems[i]).html('Completed');
+					$('button#' + bundleItems[i]).html('<i class="fa fa-check-square-o" aria-hidden="true"></i> Completed');
 					$('button#' + bundleItems[i]).removeClass('btn-danger');
 					$('button#' + bundleItems[i]).addClass('btn-primary');
 				}

@@ -28,7 +28,7 @@ var pageInfo = {
 
 router.get('/', isAuthenticated, function(req, res){
 	pageInfo.subtitle = null;
-	pageInfo.bundle = null;
+	pageInfo.bundle = 'vault';
 	pageInfo.isIndex = false;
 	pageInfo.bundleItems = [
 		{id: 'vault_2500', name: '2,500'},

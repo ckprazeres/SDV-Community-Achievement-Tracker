@@ -5,7 +5,7 @@
 
 {{#if isIndex}}
 	<div class="col-xs-12">
-		<div id="{{room}}">
+		<div id="{{#if bundle}}{{bundle}}{{else}}{{room}}{{/if}}">
 
 			<h3 class="progress-tracker">Total Progress</h3>
 			<div class="progress">
