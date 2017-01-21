@@ -1,5 +1,3 @@
-<script src="/javascript/boilerroom.js" data-farmer_id="{{user.dataValues.current_farmer_id}}"></script>
-
 <p>Here are the stats for <a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a>'s {{#if subtitle}}{{subtitle}}{{else}}{{title}}{{/if}}.</p>
 
 
@@ -7,7 +5,7 @@
 
 {{#if isIndex}}
 	<div class="col-xs-12">
-		<div id="boilerroom">
+		<div id="{{room}}">
 
 			<h3 class="progress-tracker">Total Progress</h3>
 			<div class="progress">
@@ -22,7 +20,7 @@
 		<div class="col-xs-12 col-sm-6 col-lg-4">
 			<div class="bundle-progress-item" id="{{this.id}}">
 
-				<a href="/bundles/boilerroom/{{this.id}}">
+				<a href="/bundles/{{../room}}/{{this.id}}">
 					<h3>{{this.name}}</h3>
 					<img src="/images/bundle-pictures/{{this.id}}.png">
 				</a>
@@ -32,7 +30,7 @@
 				  </div>
 				</div>
 
-				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Track</a>
+				<a class="btn btn-primary" href="/bundles/{{../room}}/{{this.id}}">Track</a>
 
 			</div>
 		</div>

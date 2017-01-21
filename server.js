@@ -74,6 +74,11 @@ var bundles = require('./routes/bundles');
 var farmers = require('./routes/farmers');
 var account = require('./routes/account');
 var boilerroom = require('./routes/boilerroom');
+var bulletinboard = require('./routes/bulletinboard');
+var craftsroom = require('./routes/craftsroom');
+var fishtank = require('./routes/fishtank');
+var pantry = require('./routes/pantry');
+var vault = require('./routes/vault');
 var api = require('./routes/api');
 
 //Regular routes
@@ -83,6 +88,11 @@ app.use('/user/farmers', farmers);
 app.use('/user/account', account);
 app.use('/bundles', bundles);
 app.use('/bundles/boilerroom', boilerroom);
+app.use('/bundles/bulletinboard', bulletinboard);
+app.use('/bundles/craftsroom', craftsroom);
+app.use('/bundles/fishtank', fishtank);
+app.use('/bundles/pantry', pantry);
+app.use('/bundles/vault', vault);
 app.use('/api', api);
 
 //404 routes

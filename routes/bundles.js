@@ -38,24 +38,4 @@ router.get('/dashboard', isAuthenticated, function(req, res){
 	res.render('dashboard', pageInfo);
 });
 
-router.get('/bulletinboard', isAuthenticated, function(req, res){
-	res.render('bulletinboard', { title: 'Bulletin Board', isBundlePage: true });
-});
-
-router.get('/craftsroom', isAuthenticated, function(req, res){
-	res.render('craftsroom', { title: 'Crafts Room', isBundlePage: true });
-});
-
-router.get('/fishtank', isAuthenticated, function(req, res){
-	res.render('fishtank', { title: 'Fish Tank', isBundlePage: true });
-});
-
-router.get('/pantry', isAuthenticated, function(req, res){
-	res.render('pantry', { title: 'Pantry', isBundlePage: true });
-});
-
-router.get('/vault', isAuthenticated, function(req, res){
-	res.render('vault', { title: 'Vault', isBundlePage: true });
-});
-
 module.exports = router;

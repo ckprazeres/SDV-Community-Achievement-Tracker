@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="/javascript/app.js"></script>
+	<script src="/javascript/app.js" data-farmer_id="{{user.dataValues.current_farmer_id}}"></script>
 	<script src="https://use.fontawesome.com/281c3e604c.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/reset.css" type="text/css" />
@@ -27,36 +27,113 @@
 				<h1><a href="/"><span id="sdv-title">Stardew Valley</span> Community Achievement Tracker</a></h1>
 
 				<nav>
-					<div class="text-center nameplate">
+
+					{{!-- Desktop Navigation --}}
+					<div class="text-center desktop-nav nameplate hidden-xs hidden-sm">
 						<div class="nameplate-name">
 							{{#if user}}
-								<a href="/user/account">{{user.dataValues.username}}</a> ::
-								<a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a> ||
-								<a href="/bundles/dashboard">Bundles Tracker</a>
-								<a href="/user/account/">Account Settings</a>
-								<a href="/user/logout">logout</a>
+								<ul class="nav-bar" id="user-info">
+									<li><a href="/user/account">{{user.dataValues.username}}</a></li>
+									<li>::</li>
+									<li><a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a></li>
+									<li>||</li>
+									<li><a href="/bundles/dashboard">Bundles Tracker</a></li>
+									<li><a href="/user/account/">Account Settings</a></li>
+									<li><a href="/user/logout">Logout</a></li>
+								</ul>
 							{{else}}
-								<a href="/user/login">Login</a>
-								<a href="/user/signup">Register</a>
+								<ul class="nav-bar" id="nav-links">
+									<li><a href="/user/login">Login</a></li>
+									<li><a href="/user/signup">Register</a></li>
+								</ul>
 							{{/if}}
 						</div>
 					</div>
+					{{!-- End Desktop Navigation --}}
+
+					{{!-- Mobile Navigation --}}
+					<div class="mobile-nav visible-xs visible-sm text-left">
+					  <div class="title-nav-button">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+								<h3>Navigation</h3>
+				    </div>
+
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							{{#if user}}
+					      <ul class="mobile-nav-ul">
+									<li><a href="/user/account">{{user.dataValues.username}}</a></li>
+									<li><a href="/user/farmers">{{user.dataValues.current_farmer_name}}</a></li>
+									<li><a href="/bundles/dashboard">Bundles Tracker</a></li>
+									<li><a href="/user/account/">Account Settings</a></li>
+									<li><a href="/user/logout">Logout</a></li>
+								</ul>
+							{{else}}
+					      <ul class="mobile-nav-ul">
+									<li><a href="/user/login">Login</a></li>
+									<li><a href="/user/signup">Register</a></li>
+								</ul>
+							{{/if}}
+				    </div>
+					</div>
+					{{!-- End Mobile Navigation --}}
+
 				</nav>
+
+
 			</header>
 
 			<main>
 				{{#if isBundlePage}}
 					<nav class="bundle-col col-xs-12 col-md-3">
-						<h2>Bundles</h2>
-						<ul class="bundle-nav">
-							<li><a class="vault" href="/bundles">Dashboard</a></li>
-							<li><a class="boilerroom {{#if isBoilerroomPage}} active{{/if}}" href="/bundles/boilerroom">Boiler Room</a></li>
-							<li><a class="bulletinboard {{#if isBulletinboardPage}} active{{/if}}" href="/bundles/bulletinboard">Bulletin Board</a></li>
-							<li><a class="craftsroom {{#if isCraftsroomPage}} active{{/if}}" href="/bundles/craftsroom">Crafts Room</a></li>
-							<li><a class="fishtank {{#if isFishtankPage}} active{{/if}}" href="/bundles/fishtank">Fish Tank</a></li>
-							<li><a class="pantry {{#if isPantryPage}} active{{/if}}" href="/bundles/pantry">Pantry</a></li>
-							<li><a class="vault {{#if isVaultPage}} active{{/if}}" href="/bundles/vault">Vault</a></li>
-						</ul>
+
+						{{!-- Desktop Bundle Navigation --}}
+						<div class="desktop-nav bundle-nav hidden-xs hidden-sm">
+							<h2>Bundles</h2>
+							<ul class="bundle-nav">
+								<li><a class="vault" href="/bundles">Dashboard</a></li>
+								<li><a class="boilerroom {{#if isBoilerroomPage}} active{{/if}}" href="/bundles/boilerroom">Boiler Room</a></li>
+								<li><a class="bulletinboard {{#if isBulletinboardPage}} active{{/if}}" href="/bundles/bulletinboard">Bulletin Board</a></li>
+								<li><a class="craftsroom {{#if isCraftsroomPage}} active{{/if}}" href="/bundles/craftsroom">Crafts Room</a></li>
+								<li><a class="fishtank {{#if isFishtankPage}} active{{/if}}" href="/bundles/fishtank">Fish Tank</a></li>
+								<li><a class="pantry {{#if isPantryPage}} active{{/if}}" href="/bundles/pantry">Pantry</a></li>
+								<li><a class="vault {{#if isVaultPage}} active{{/if}}" href="/bundles/vault">Vault</a></li>
+							</ul>
+						</div>
+						{{!-- End Desktop Bundle Navigation --}}
+
+						{{!-- Mobile Bundle Navigation --}}
+						<div class="mobile-nav bundle-nav visible-xs visible-sm text-left">
+						  <div class="title-nav-button">
+					      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+					        <span class="sr-only">Toggle navigation</span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					      </button>
+									<h3>Bundles</h3>
+					    </div>
+
+					    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+								{{#if user}}
+						      <ul class="mobile-nav-ul">
+										<li><a class="vault" href="/bundles">Dashboard</a></li>
+										<li><a class="boilerroom {{#if isBoilerroomPage}} active{{/if}}" href="/bundles/boilerroom">Boiler Room</a></li>
+										<li><a class="bulletinboard {{#if isBulletinboardPage}} active{{/if}}" href="/bundles/bulletinboard">Bulletin Board</a></li>
+										<li><a class="craftsroom {{#if isCraftsroomPage}} active{{/if}}" href="/bundles/craftsroom">Crafts Room</a></li>
+										<li><a class="fishtank {{#if isFishtankPage}} active{{/if}}" href="/bundles/fishtank">Fish Tank</a></li>
+										<li><a class="pantry {{#if isPantryPage}} active{{/if}}" href="/bundles/pantry">Pantry</a></li>
+										<li><a class="vault {{#if isVaultPage}} active{{/if}}" href="/bundles/vault">Vault</a></li>
+									</ul>
+								{{/if}}
+					    </div>
+						</div>
+						{{!-- End Mobile Bundle Navigation --}}
+
 					</nav>
 
 					<div class="bundle-col col-xs-12 col-md-9">
