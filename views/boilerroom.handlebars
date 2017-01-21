@@ -9,7 +9,7 @@
 	<div class="col-xs-12">
 		<div id="boilerroom">
 
-			<h3>Total Progress</h3>
+			<h3 class="progress-tracker">Total Progress</h3>
 			<div class="progress">
 			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
 			  </div>
@@ -39,11 +39,11 @@
 	{{/each}}
 {{/if}}
 
-{{#if isBlacksmiths}}
+{{#unless isIndex}}
 	<div class="col-xs-12">
-		<div id="blacksmiths">
+		<div id="{{bundle}}">
 
-			<h3>Total Progress</h3>
+			<h3 class="{{bundle}} progress-tracker">Total Progress</h3>
 			<div class="progress">
 			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
 			  </div>
@@ -59,65 +59,11 @@
 				<h3>{{this.name}}</h3>
 				<p><img src="/images/bundle-items/{{this.id}}.png"></p>
 
-				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Completed</a>
+				<button class="{{../bundle}} update-bundle btn" id="{{this.id}}"></button>
 
 			</div>
 		</div>
 	{{/each}}
-{{/if}}
-
-{{#if isGeologists}}
-	<div class="col-xs-12">
-		<div id="geologists">
-
-			<h3>Total Progress</h3>
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-		</div>
-	</div>
-
-	{{#each bundleItems}}
-		<div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="bundle-progress-item" id="{{this.id}}">
-
-				<h3>{{this.name}}</h3>
-				<p><img src="/images/bundle-items/{{this.id}}.png"></p>
-
-				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Completed</a>
-
-			</div>
-		</div>
-	{{/each}}
-{{/if}}
-
-{{#if isAdventurers}}
-	<div class="col-xs-12">
-		<div id="adventurers">
-
-			<h3>Total Progress</h3>
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-			  </div>
-			</div>
-
-		</div>
-	</div>
-
-	{{#each bundleItems}}
-		<div class="col-xs-12 col-sm-6 col-lg-4">
-			<div class="bundle-progress-item" id="{{this.id}}">
-
-				<h3>{{this.name}}</h3>
-				<p><img src="/images/bundle-items/{{this.id}}.png"></p>
-
-				<a class="btn btn-primary" href="/bundles/boilerroom/{{this.id}}">Completed</a>
-
-			</div>
-		</div>
-	{{/each}}
-{{/if}}
+{{/unless}}
 
 </section>

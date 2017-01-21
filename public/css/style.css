@@ -19,6 +19,15 @@ i, em {
 	font-style: italic;
 }
 
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+	outline: 0;
+}
+
 
 /* ---------------------- Links ---------------------- */
 
@@ -362,6 +371,10 @@ ul.bundle-nav li a.active {
 
 .bundle-progress-item a img {
 	margin-bottom: 10px;
+}
+
+.bundle-completed {
+	opacity: .5;
 }
 
 /* ---------------------- Progress Bars ---------------------- */

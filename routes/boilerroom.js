@@ -14,7 +14,9 @@ function isAuthenticated(req, res, callback){
 }
 
 var pageInfo = {
+	table: 'boilerroom',
 	title: 'Boiler Room',
+	bundle: '',
 	isBundlePage: true,
 	isBoilerroomPage: true,
 	isIndex: false,
@@ -29,10 +31,8 @@ var pageInfo = {
 
 router.get('/', isAuthenticated, function(req, res){
 	pageInfo.subtitle = null;
+	pageInfo.bundle = null;
 	pageInfo.isIndex = true;
-	pageInfo.isBlacksmiths = false;
-	pageInfo.isGeologists = false;
-	pageInfo.isAdventurers = false;
 	pageInfo.bundles = [
 		{id: 'blacksmiths', name: 'Blacksmith\'s Bundle'},
 		{id: 'geologists', name: 'Geologist\'s Bundle'},
@@ -43,10 +43,8 @@ router.get('/', isAuthenticated, function(req, res){
 
 router.get('/blacksmiths', isAuthenticated, function(req, res){
 	pageInfo.subtitle = 'Blacksmith\'s Bundle';
+	pageInfo.bundle = 'blacksmiths';
 	pageInfo.isIndex = false;
-	pageInfo.isBlacksmiths = true;
-	pageInfo.isGeologists = false;
-	pageInfo.isAdventurers = false;
 	pageInfo.bundleItems = [
 		{id: 'blacksmiths_copperbar', name: 'Copper Bar'},
 		{id: 'blacksmiths_ironbar', name: 'Iron Bar'},
@@ -57,10 +55,8 @@ router.get('/blacksmiths', isAuthenticated, function(req, res){
 
 router.get('/geologists', isAuthenticated, function(req, res){
 	pageInfo.subtitle = 'Geologist\'s Bundle';
+	pageInfo.bundle = 'geologists';
 	pageInfo.isIndex = false;
-	pageInfo.isBlacksmiths = false;
-	pageInfo.isGeologists = true;
-	pageInfo.isAdventurers = false;
 	pageInfo.bundleItems = [
 		{id: 'geologists_quartz', name: 'Quartz'},
 		{id: 'geologists_earthcrystal', name: 'Earth Crystal'},
@@ -72,10 +68,8 @@ router.get('/geologists', isAuthenticated, function(req, res){
 
 router.get('/adventurers', isAuthenticated, function(req, res){
 	pageInfo.subtitle = 'Adventurer\'s Bundle';
+	pageInfo.bundle = 'adventurers';
 	pageInfo.isIndex = false;
-	pageInfo.isBlacksmiths = false;
-	pageInfo.isGeologists = false;
-	pageInfo.isAdventurers = true;
 	pageInfo.bundleItems = [
 		{id: 'adventurers_slime', name: 'Slime'},
 		{id: 'adventurers_batwing', name: 'Bat Wing'},
