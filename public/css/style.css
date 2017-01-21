@@ -133,7 +133,7 @@ span#sdv-title {
 	margin: 0 39px 0 39px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
 	.nameplate {
 		width: 100%;
 	}
