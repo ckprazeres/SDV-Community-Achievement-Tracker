@@ -67,10 +67,12 @@ router.get('/update/:table/:farmer_id/:field', isAuthenticated, function(req, re
 			sequelize.query(query, { type: sequelize.QueryTypes.UPDATE})
 		}
 	})
-	sequelize.query("SELECT * FROM `" + table + "` WHERE `farmer_id`='" + farmer_id + "'")
-	.spread(function(results, metadata) {
-		res.send(results[0]);
-	})
+	.then(
+		sequelize.query("SELECT * FROM `" + table + "` WHERE `farmer_id`='" + farmer_id + "'")
+		.spread(function(results, metadata) {
+			res.send(results[0]);
+		})
+	)
 
 })
 
