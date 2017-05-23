@@ -78,7 +78,7 @@ function getStats(room, bundle, callback) {
 				res.enchanters_rabbitsfoot +
 				res.enchanters_pomegranate;
 
-		  required = 24;
+		  required = 23;
 		}
 		else if (bundle == 'chefs') {
 			completed =
