@@ -449,9 +449,11 @@ function getStats(room, bundle, callback) {
 		// console.log(completed + '/' +required);
 		if (completed >= required) {
 			$('button.' + bundle + '.update-bundle').addClass('bundle-completed');
+			$('img.bundle-item-image').addClass('bundle-completed');
 		}
 		else {
 			$('button.' + bundle + '.update-bundle').removeClass('bundle-completed');
+			$('img.bundle-item-image').removeClass('bundle-completed');
 		}
 
 		// console.log('Bundle Total: ' + completedTotal);
