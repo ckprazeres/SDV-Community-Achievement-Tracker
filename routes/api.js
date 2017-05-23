@@ -55,23 +55,23 @@ router.get('/update/:table/:farmer_id/:field', isAuthenticated, function(req, re
 	var value = req.params.value;
 
 	sequelize.query("SELECT * FROM `" + table + "` WHERE `farmer_id`='" + farmer_id + "'")
-	.spread(function(results) {
+	.spread(function(results, metadata) {
 		var data = results[0];
 
 		if (data[field] == 0) {
 			query = "UPDATE `" + table + "` SET `" + field + "`='1' WHERE `farmer_id`='" + farmer_id + "'";
 			sequelize.query(query, { type: sequelize.QueryTypes.UPDATE})
-			.spread(function(results, metadata) {
-				console.log(results,metadata);
-			})
 		}
 		else if (data[field] == 1) {
 			query = "UPDATE `" + table + "` SET `" + field + "`='0' WHERE `farmer_id`='" + farmer_id + "'";
 			sequelize.query(query, { type: sequelize.QueryTypes.UPDATE})
-			.spread(function(results, metadata) {
-				console.log(results,metadata);
-			})
 		}
+	})
+	.then(function() {
+		sequelize.query("SELECT * FROM `" + table + "` WHERE `farmer_id`='" + farmer_id + "'")
+		.spread(function(results, metadata) {
+			res.send(results[0]);
+		})
 	})
 })
 
