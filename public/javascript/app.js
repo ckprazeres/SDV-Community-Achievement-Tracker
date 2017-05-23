@@ -149,15 +149,15 @@ function getStats(room, bundle, callback) {
 				res.construction_wood2 +
 				res.construction_stone +
 				res.construction_hardwood +
-				res.exotic_cocount +
-				res.exotic_cactusfruit +
-				res.exotic_cavecarrot +
-				res.exotic_redmushroom +
-				res.exotic_purplemushroom +
-				res.exotic_maplesyrup +
-				res.exotic_oakresin +
-				res.exotic_pinetar +
-				res.exotic_morel;
+				res.exoticforaging_cocount +
+				res.exoticforaging_cactusfruit +
+				res.exoticforaging_cavecarrot +
+				res.exoticforaging_redmushroom +
+				res.exoticforaging_purplemushroom +
+				res.exoticforaging_maplesyrup +
+				res.exoticforaging_oakresin +
+				res.exoticforaging_pinetar +
+				res.exoticforaging_morel;
 
 		  required = 24;
 		}
@@ -207,15 +207,15 @@ function getStats(room, bundle, callback) {
 		}
 		else if (bundle == 'exoticforaging') {
 			completed =
-				res.exotic_cocount +
-				res.exotic_cactusfruit +
-				res.exotic_cavecarrot +
-				res.exotic_redmushroom +
-				res.exotic_purplemushroom +
-				res.exotic_maplesyrup +
-				res.exotic_oakresin +
-				res.exotic_pinetar +
-				res.exotic_morel;
+				res.exoticforaging_cocount +
+				res.exoticforaging_cactusfruit +
+				res.exoticforaging_cavecarrot +
+				res.exoticforaging_redmushroom +
+				res.exoticforaging_purplemushroom +
+				res.exoticforaging_maplesyrup +
+				res.exoticforaging_oakresin +
+				res.exoticforaging_pinetar +
+				res.exoticforaging_morel;
 
 		  required = 5;
 		}
@@ -519,15 +519,15 @@ function getItemStatus(room) {
 	  'construction_wood2',
 	  'construction_stone',
 	  'construction_hardwood',
-	  'exotic_cocount',
-	  'exotic_cactusfruit',
-	  'exotic_cavecarrot',
-	  'exotic_redmushroom',
-	  'exotic_purplemushroom',
-	  'exotic_maplesyrup',
-	  'exotic_oakresin',
-	  'exotic_pinetar',
-	  'exotic_morel',
+	  'exoticforaging_cocount',
+	  'exoticforaging_cactusfruit',
+	  'exoticforaging_cavecarrot',
+	  'exoticforaging_redmushroom',
+	  'exoticforaging_purplemushroom',
+	  'exoticforaging_maplesyrup',
+	  'exoticforaging_oakresin',
+	  'exoticforaging_pinetar',
+	  'exoticforaging_morel',
 	  'riverfish_sunfish',
 	  'riverfish_catfish',
 	  'riverfish_shad',
