@@ -27,15 +27,15 @@ module.exports = function(sequelize, DataTypes) {
 		construction_wood2: DataTypes.BOOLEAN,
 		construction_stone: DataTypes.BOOLEAN,
 		construction_hardwood: DataTypes.BOOLEAN,
-		exotic_cocount: DataTypes.BOOLEAN,
-		exotic_cactusfruit: DataTypes.BOOLEAN,
-		exotic_cavecarrot: DataTypes.BOOLEAN,
-		exotic_redmushroom: DataTypes.BOOLEAN,
-		exotic_purplemushroom: DataTypes.BOOLEAN,
-		exotic_maplesyrup: DataTypes.BOOLEAN,
-		exotic_oakresin: DataTypes.BOOLEAN,
-		exotic_pinetar: DataTypes.BOOLEAN,
-		exotic_morel: DataTypes.BOOLEAN
+		exoticforaging_cocount: DataTypes.BOOLEAN,
+		exoticforaging_cactusfruit: DataTypes.BOOLEAN,
+		exoticforaging_cavecarrot: DataTypes.BOOLEAN,
+		exoticforaging_redmushroom: DataTypes.BOOLEAN,
+		exoticforaging_purplemushroom: DataTypes.BOOLEAN,
+		exoticforaging_maplesyrup: DataTypes.BOOLEAN,
+		exoticforaging_oakresin: DataTypes.BOOLEAN,
+		exoticforaging_pinetar: DataTypes.BOOLEAN,
+		exoticforaging_morel: DataTypes.BOOLEAN
 	}, {
 		classMethods: {
 			associate: function(models) {
