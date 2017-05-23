@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
 		construction_wood2: DataTypes.BOOLEAN,
 		construction_stone: DataTypes.BOOLEAN,
 		construction_hardwood: DataTypes.BOOLEAN,
-		exoticforaging_cocount: DataTypes.BOOLEAN,
+		exoticforaging_coconut: DataTypes.BOOLEAN,
 		exoticforaging_cactusfruit: DataTypes.BOOLEAN,
 		exoticforaging_cavecarrot: DataTypes.BOOLEAN,
 		exoticforaging_redmushroom: DataTypes.BOOLEAN,

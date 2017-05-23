@@ -45,7 +45,7 @@ router.get('/blacksmiths', isAuthenticated, function(req, res){
 	pageInfo.bundleItems = [
 		{id: 'blacksmiths_copperbar', name: 'Copper Bar'},
 		{id: 'blacksmiths_ironbar', name: 'Iron Bar'},
-		{id: 'blacksmiths_goldbar', name: 'Gold Bar'},
+		{id: 'blacksmiths_goldbar', name: 'Gold Bar'}
 	];
 	res.render('bundle', pageInfo);
 });

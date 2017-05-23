@@ -149,7 +149,7 @@ function getStats(room, bundle, callback) {
 				res.construction_wood2 +
 				res.construction_stone +
 				res.construction_hardwood +
-				res.exoticforaging_cocount +
+				res.exoticforaging_coconut +
 				res.exoticforaging_cactusfruit +
 				res.exoticforaging_cavecarrot +
 				res.exoticforaging_redmushroom +
@@ -207,7 +207,7 @@ function getStats(room, bundle, callback) {
 		}
 		else if (bundle == 'exoticforaging') {
 			completed =
-				res.exoticforaging_cocount +
+				res.exoticforaging_coconut +
 				res.exoticforaging_cactusfruit +
 				res.exoticforaging_cavecarrot +
 				res.exoticforaging_redmushroom +
@@ -519,7 +519,7 @@ function getItemStatus(room) {
 	  'construction_wood2',
 	  'construction_stone',
 	  'construction_hardwood',
-	  'exoticforaging_cocount',
+	  'exoticforaging_coconut',
 	  'exoticforaging_cactusfruit',
 	  'exoticforaging_cavecarrot',
 	  'exoticforaging_redmushroom',
