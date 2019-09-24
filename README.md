@@ -1,6 +1,6 @@
 # Stardew Valley Community Achievement Tracker
 
-A webapp that allows you to track your progress restoring the old [community center](https://stardewvalleywiki.com/Community_Center) in the indie game [Stardew Valley](https://stardewvalley.net/). This app allows you to manually check off items that have already been delivered to the community center and displays a visual progress bar.
+A webapp that allows you to track your progress restoring the old [community center](https://stardewvalleywiki.com/Community_Center) in the indie game [Stardew Valley](https://stardewvalley.net/). This app allows you to manually check off items that have already been delivered to the community center and displays a visual progress bar. The web app is built using Node.js, MySQL, [Express](https://expressjs.com/), [Handlebars](http://handlebarsjs.com/), and [Passport](http://www.passportjs.org/).
 
 You can use the test account to login and see the site in action:
 
